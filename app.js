@@ -34,6 +34,19 @@ app.use(express.json());                       // Parse JSON request bodies
 app.use(morgan("dev"));                        // HTTP request logger
 app.use(generalLimiter);                       // Apply global rate limiting
 
+// ── Root Route ────────────────────────────────────────────────────────────────
+/**
+ * GET /
+ * Welcome message for the root endpoint.
+ */
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Welcome to the URL Shortener API 🚀",
+    docs: "/health to check status, POST /shortURL to create a link"
+  });
+});
+
 // ── Health Check ──────────────────────────────────────────────────────────────
 /**
  * GET /health
